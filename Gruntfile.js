@@ -4,7 +4,7 @@ module.exports = function(grunt){
         less: {
             development:{
                 files: {
-                    'main.css': 'main.less'
+                    'dist/main.css': 'src/main.less'
                 }
             },
             production:{
@@ -12,7 +12,7 @@ module.exports = function(grunt){
                     compress:true,
                 },
                 files:{
-                    'main.min.css':'main.less'
+                    'dist/main.min.css':'src/main.less'
                 }
             },
             replace: {
@@ -45,9 +45,11 @@ module.exports = function(grunt){
 
 
 grunt.loadNpmTasks('grunt-contrib-less');
-grunt.loadNpmTasks('grunt-replace');
-grunt.registerTask('default', ['less']);
+grunt.registerTask('default', ['less:development']);
+grunt.registerTask('build', ['less:production']);
 grunt.loadNpmTasks('grunt-contrib-uglify');
+
+grunt.loadNpmTasks('grunt-replace');
 grunt.registerTask('build', ['uglify']);
 }
 
